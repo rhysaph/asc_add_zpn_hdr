@@ -35,8 +35,7 @@ print("Using these zenith coordinates ",xzenith, yzenith)
 rot_angle = -12
 print("Using rotation angle of ",rot_angle)
 
-print("Not setting ZPN distortion coefficients")
-
+# print("Not setting ZPN distortion coefficients")
 
 # Plate scale in arcseconds per pixel, we don't think this should be varied
 xplate_scale = 0.055
@@ -49,10 +48,14 @@ latpole = 0.0 # set to latitude later
 # These are the altitude stretch coeficients found by
 # 2023-24 students. They need to be divided by the plate
 # scale before use.
-A1 = 0.05648
-A2 = 8.227e-06
-A3 = -1.089e-08
+A1 = 0.05648 / xplate_scale
+A2 = 8.227e-06 / xplate_scale
+A3 = -1.089e-08 / xplate_scale
 
+print("Using ZPN these coefficients:")
+print("A1 = ", A1)
+print("A2 = ", A2)
+print("A3 = ", A3)
 
 ########### Program starts here =====================
 imagefile = sys.argv[1]
