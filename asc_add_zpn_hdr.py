@@ -46,6 +46,12 @@ yplate_scale = 0.055
 lonpole = 180.0
 latpole = 0.0 # set to latitude later
 
+# These are the altitude stretch coeficients found by
+# 2023-24 students. They need to be divided by the plate
+# scale before use.
+A1 = 0.05648
+A2 = 8.227e-06
+A3 = -1.089e-08
 
 
 ########### Program starts here =====================
@@ -119,8 +125,13 @@ new_wcs.wcs.latpole = lat_degrees
 
 
 # This sets the ZPN distortion parameters to no correction.
-new_wcs.wcs.set_pv([(2, 1, 1.0)])
+#new_wcs.wcs.set_pv([(2, 1, 1.0)])
 
+# Set 3 orders of ZPN correction
+new_wcs.wcs.set_pv([(2, 1, 1.027),
+                    (2, 2, 1.496e-04),
+                    (2, 3, -1.980e-07)
+                ])
 
 print("New WCS is ",new_wcs)
 
