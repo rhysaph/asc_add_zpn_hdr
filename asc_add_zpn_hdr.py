@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# Don't use this program, use add_zpn_hdr.py instead.
-
 # Add the ZPN projection WCS headers to an all sky image
 
 # Example usage:
