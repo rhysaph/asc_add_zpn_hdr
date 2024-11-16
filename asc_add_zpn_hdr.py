@@ -131,9 +131,9 @@ new_wcs.wcs.latpole = lat_degrees
 #new_wcs.wcs.set_pv([(2, 1, 1.0)])
 
 # Set 3 orders of ZPN correction
-new_wcs.wcs.set_pv([(2, 1, 1.027),
-                    (2, 2, 1.496e-04),
-                    (2, 3, -1.980e-07)
+new_wcs.wcs.set_pv([(2, 1, A1),
+                    (2, 2, A2),
+                    (2, 3, A3)
                 ])
 
 print("New WCS is ",new_wcs)
