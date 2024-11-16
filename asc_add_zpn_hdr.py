@@ -56,6 +56,7 @@ print("Using ZPN these coefficients:")
 print("A1 = ", A1)
 print("A2 = ", A2)
 print("A3 = ", A3)
+print("")
 
 ########### Program starts here =====================
 imagefile = sys.argv[1]
