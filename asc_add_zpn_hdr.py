@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# Don't use this program, use add_zpn_hdr.py instead.
-
 # Add the ZPN projection WCS headers to an all sky image
 
 # Example usage:
@@ -37,8 +35,7 @@ print("Using these zenith coordinates ",xzenith, yzenith)
 rot_angle = -12
 print("Using rotation angle of ",rot_angle)
 
-print("Not setting ZPN distortion coefficients")
-
+# print("Not setting ZPN distortion coefficients")
 
 # Plate scale in arcseconds per pixel, we don't think this should be varied
 xplate_scale = 0.055
@@ -48,7 +45,18 @@ yplate_scale = 0.055
 lonpole = 180.0
 latpole = 0.0 # set to latitude later
 
+# These are the altitude stretch coeficients found by
+# 2023-24 students. They need to be divided by the plate
+# scale before use.
+A1 = 0.05648 / xplate_scale
+A2 = 8.227e-06 / xplate_scale
+A3 = -1.089e-08 / xplate_scale
 
+print("Using ZPN these coefficients:")
+print("A1 = ", A1)
+print("A2 = ", A2)
+print("A3 = ", A3)
+print("")
 
 ########### Program starts here =====================
 imagefile = sys.argv[1]
@@ -121,8 +129,13 @@ new_wcs.wcs.latpole = lat_degrees
 
 
 # This sets the ZPN distortion parameters to no correction.
-new_wcs.wcs.set_pv([(2, 1, 1.0)])
+#new_wcs.wcs.set_pv([(2, 1, 1.0)])
 
+# Set 3 orders of ZPN correction
+new_wcs.wcs.set_pv([(2, 1, A1),
+                    (2, 2, A2),
+                    (2, 3, A3)
+                ])
 
 print("New WCS is ",new_wcs)
 
