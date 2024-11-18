@@ -52,6 +52,12 @@ A1 = 0.05648 / xplate_scale
 A2 = 8.227e-06 / xplate_scale
 A3 = -1.089e-08 / xplate_scale
 
+# To get the ZPN transform without distortion, uncomment the 
+# three lines below:
+# A1 = 1.0
+# A2 = 0.0
+# A3 = 0.0
+
 print("Using ZPN these coefficients:")
 print("A1 = ", A1)
 print("A2 = ", A2)
